@@ -20,6 +20,9 @@
 
    <div id="root">
 
+      <input type="text" @keyup.enter="search" v-model="searchedMovie">
+      <button @click="search">Cerca</button>
+
    </div> <!-- root -->
 
    <script src="js/script.js"></script>
