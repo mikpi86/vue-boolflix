@@ -21,17 +21,17 @@
    <div id="root">
 
       <input type="text" @keyup.enter="search" v-model="searchedMovie">
-      <button @click="search">Cerca</button>
+      <button v-model="searchedMovie" @click="search">Cerca</button>
 
-      <div v-for="(movie, index) in movies">
+      <div v-for="movie in movies">
          <!-- titolo -->
-         <h4>{{movie[index].title}}</h4>
+         <h4>{{movie.title}}</h4>
          <!-- titolo originale -->
-         <h5>{{movie[index].original_title}}</h5>
+         <h5>{{movie.original_title}}</h5>
          <!-- lingua -->
-         <p>{{movie[index].original_language}}</p>
+         <p>{{movie.original_language}}</p>
          <!-- voto -->
-         <p>{{movie[index].vote_average}}</p>
+         <p>{{movie.vote_average}}</p>
       </div>
 
    </div> <!-- root -->
