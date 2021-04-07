@@ -29,12 +29,13 @@
       </div>
 
       <div v-for="movie in movies" class="card">
+         <h3>Film</h3> <!-- mi serve solo come riferimento -->
          <!-- titolo -->
          <h4>{{movie.title}}</h4>
          <!-- titolo originale -->
          <h5>{{movie.original_title}}</h5>
          <!-- lingua -->
-         <p>{{movie.original_language}}</p> <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento numerico -->
+         <p>{{movie.original_language}}</p> <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento -->
          <img :src=" `https://www.countryflags.io/` + movie.original_language + `/shiny/64.png`" :alt="movie.original_language">
          <!-- voto -->
          <p>{{movie.vote_average}}</p> <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento numerico -->
@@ -45,18 +46,17 @@
       </div>
 
       <div v-for="serie in series" class="card">
+         <h3>Serie tv</h3> <!-- mi serve solo come riferimento -->
          <!-- titolo -->
-         <h4>{{serie.title}}</h4>
+         <h4>{{serie.name}}</h4>
          <!-- titolo originale -->
-         <h5>{{serie.original_title}}</h5>
+         <h5>{{serie.original_name}}</h5>
          <!-- lingua -->
-         <p>{{serie.original_language}}</p>
-         <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento numerico -->
+         <p>{{serie.original_language}}</p> <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento -->
          <img :src=" `https://www.countryflags.io/` + serie.original_language + `/shiny/64.png`"
             :alt="serie.original_language">
          <!-- voto -->
-         <p>{{serie.vote_average}}</p>
-         <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento numerico -->
+         <p>{{serie.vote_average}}</p> <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento numerico -->
          <i class="fas fa-star" v-for="star in serie.vote_average"></i>
          <!-- font awesome di riferimento -->
          <!-- <i class="fas fa-star"></i> -->
