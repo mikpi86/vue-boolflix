@@ -51,14 +51,24 @@ var app = new Vue({
           // ripulisco la searchbar
           this.searchedMovie = '';
 
-          // trasformo i voti in interi da 1 a 5
           this.movies.forEach(movie => {
+            
+            // trasformo i voti in interi da 1 a 5
             movie.vote_average = parseInt((movie.vote_average / 2).toFixed());
+
+            // assegno una bandiera alla lingua
+            if (movie.original_language == 'en') {
+              movie.original_language = 'gb';
+            } else if (movie.original_language == 'ja') {
+              movie.original_language = 'jp';
+            }
           });
+
+          
           
         });
 
-    }
+    },
 
   } // chiusura methods
   
