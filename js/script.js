@@ -27,6 +27,8 @@ var app = new Vue({
 
     movies: [],
 
+    series: [],
+
     searchedMovie: ''
 
   }, // chiusura data
@@ -39,6 +41,7 @@ var app = new Vue({
 
     search(){
 
+      // chiamata film
       axios
         .get('https://api.themoviedb.org/3/search/movie?api_key=cdeff8ac68baa670d6a0c8c1991bbb39&query=' + this.searchedMovie)
         .then((result) => {
@@ -62,11 +65,37 @@ var app = new Vue({
             } else if (movie.original_language == 'ja') {
               movie.original_language = 'jp';
             }
-          });
+          });  
+        }); // chiusura chiamata film
 
-          
-          
-        });
+      // chiamata serie tv
+      axios
+        .get('https://api.themoviedb.org/3/search/tv?api_key=cdeff8ac68baa670d6a0c8c1991bbb39&query=' + this.searchedMovie)
+        .then((result) => {
+
+          // copio ricerca in series
+          this.series = result.data.results;
+          console.log(this.series);
+          // stampa ricerca effettuata
+          console.log(this.searchedMovie);
+          // ripulisco la searchbar
+          this.searchedMovie = '';
+
+          this.series.forEach(serie => {
+
+            // trasformo i voti in interi da 1 a 5
+            serie.vote_average = parseInt((serie.vote_average / 2).toFixed());
+
+            // assegno una bandiera alla lingua
+            if (serie.original_language == 'en') {
+              serie.original_language = 'gb';
+            } else if (serie.original_language == 'ja') {
+              movie.original_language = 'jp';
+            }
+          });
+        }); // chiusura chiamata serie tv
+
+
 
     },
 
