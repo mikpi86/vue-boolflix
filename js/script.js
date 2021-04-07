@@ -43,8 +43,6 @@ var app = new Vue({
         .get('https://api.themoviedb.org/3/search/movie?api_key=cdeff8ac68baa670d6a0c8c1991bbb39&query=' + this.searchedMovie)
         .then((result) => {
 
-          // stampa array di film in base a ricerca
-          console.log(result.data.results);
           // copio ricerca in movies
           this.movies = result.data.results;
           console.log(this.movies);
@@ -55,8 +53,7 @@ var app = new Vue({
 
           // trasformo i voti in interi da 1 a 5
           this.movies.forEach(movie => {
-            movie.vote_average = (movie.vote_average / 2).toFixed();
-            console.log(movie.vote_average);
+            movie.vote_average = parseInt((movie.vote_average / 2).toFixed());
           });
           
         });
