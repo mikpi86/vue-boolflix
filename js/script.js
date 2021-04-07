@@ -14,6 +14,8 @@ var app = new Vue({
 
   data: {
 
+    movies: [],
+
     searchedMovie: ''
 
   }, // chiusura data
@@ -30,9 +32,15 @@ var app = new Vue({
         .get('https://api.themoviedb.org/3/search/movie?api_key=cdeff8ac68baa670d6a0c8c1991bbb39&query=' + this.searchedMovie)
         .then((result) => {
 
+          // stampa array di film in base a ricerca
           console.log(result.data.results);
-          console.log(this.searchedMovie);
 
+          this.movies.push(result.data.results);
+          // stampa ricerca effettuata
+          console.log(this.searchedMovie);
+          // ripulisco la searchbar
+          this.searchedMovie = '';
+          
         });
 
     }
