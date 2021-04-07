@@ -12,6 +12,7 @@
    <!-- link al google font -->
 
    <!-- link al css -->
+   <link rel="stylesheet" href="css/style.css">
 
    <title>vue-boolflix</title>
 </head>
@@ -20,10 +21,12 @@
 
    <div id="root">
 
-      <input type="text" @keyup.enter="search" v-model="searchedMovie">
-      <button v-model="searchedMovie" @click="search">Cerca</button>
+      <div class="search_area">
+         <input type="text" @keyup.enter="search" v-model="searchedMovie">
+         <button v-model="searchedMovie" @click="search">Cerca</button>
+      </div>
 
-      <div v-for="movie in movies">
+      <div v-for="movie in movies" class="card">
          <!-- titolo -->
          <h4>{{movie.title}}</h4>
          <!-- titolo originale -->
