@@ -58,7 +58,7 @@ main {
     left: 0;
     background-color: rgba(0,0,0,0.7);
     padding: 5px;
-    color: white;
+    color: rgb(216, 216, 216);
     display: none;
 }
 
