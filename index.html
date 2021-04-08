@@ -31,7 +31,9 @@
       <div v-for="result in results" class="card">
 
          <div class="poster">
+            <!-- poster -->
             <img v-if="result.poster_path != null" :src="'https://image.tmdb.org/t/p/w342/' + result.poster_path">
+            <!-- immagine di rimpiazzo poster non trovato -->
             <img v-if="result.poster_path == null" src="img/not_found.jpg" class="not_found">
          </div>
 
