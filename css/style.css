@@ -4,20 +4,88 @@
     box-sizing: border-box;
 }
 
-.search_area {
-    margin: 5px;
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(22, 22, 22);
+}
+
+.wrapper {
+    width: 95%;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+/* header */
+header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header > .search_area {
+    margin-right: 10px;
+}
+header>.search_area > button {
+    padding: 2px;
+}
+/* END header */
+
+/* main */
+main {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .card {
+    width: 342px;
+    height: 513px;
     margin: 5px;
-    padding: 10px;
-    border: 1px solid black;
+    position: relative;
+    /* il flex sottostante e la max-height della poster_img in basso sono stati aggiunti per dare un aspetto migliore alle locandine troppo alte come il primo risultato alla ricerca di Top Gun */
+    display: flex;
+    justify-content: center;
 }
 
-.poster > .not_found {
+.card > .poster > .poster_img {
+    max-height: 513px;
+}
+
+.info_card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    padding: 5px;
+    color: white;
+    display: none;
+}
+
+.info_card > .rate > i {
+    color: rgb(241, 196, 80);
+}
+
+.card:hover .info_card {
+    display: block;
+}
+
+#no_poster {
+    height: 513px;
+    background-color: white;
+    text-align: center;
+}
+.poster > #no_poster > .not_found {
     width: 342px;
+}
+
+.language {
+    display: flex;
+    align-items: center;
 }
 
 .language > img {
     width: 30px;
+    margin-left: 5px;
 }
+/* END main */
