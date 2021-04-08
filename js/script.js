@@ -32,11 +32,9 @@ var app = new Vue({
 
   data: {
 
-    movies: [],
+    searched: '',
 
-    series: [],
-
-    searchedMovie: ''
+    results: [],
 
   }, // chiusura data
 
@@ -48,61 +46,73 @@ var app = new Vue({
 
     search(){
 
+      const self = this;
+
+      self.results = [];
+
       // chiamata film
       axios
-        .get('https://api.themoviedb.org/3/search/movie?api_key=cdeff8ac68baa670d6a0c8c1991bbb39&query=' + this.searchedMovie)
-        .then((result) => {
+        .get('https://api.themoviedb.org/3/search/movie', {
+          params: {
+            api_key: 'cdeff8ac68baa670d6a0c8c1991bbb39',
+            query: self.searched,
+            language: 'it-IT'
+          }
+        })
+        .then((response) => {
 
-          // copio ricerca in movies
-          this.movies = result.data.results;
-          console.log(this.movies);
-          // stampa ricerca effettuata
-          console.log(this.searchedMovie);
+          const resultsFilm = response.data.results;
+
+          self.results = self.results.concat(resultsFilm);
+
+          // assegno una bandiera alla lingua
+          self.results.forEach(result => {
+            if (result.original_language == 'en') {
+              result.original_language = 'gb';
+            } else if (result.original_language == 'ja') {
+              result.original_language = 'jp';
+            }            
+          });
+
           // ripulisco la searchbar
-          this.searchedMovie = '';
+          this.searched = '';
 
-          this.movies.forEach(movie => {
-            
-            // trasformo i voti in interi da 1 a 5
-            movie.vote_average = parseInt((movie.vote_average / 2).toFixed());
-
-            // assegno una bandiera alla lingua
-            if (movie.original_language == 'en') {
-              movie.original_language = 'gb';
-            } else if (movie.original_language == 'ja') {
-              movie.original_language = 'jp';
-            }
-          });  
         }); // chiusura chiamata film
 
       // chiamata serie tv
       axios
-        .get('https://api.themoviedb.org/3/search/tv?api_key=cdeff8ac68baa670d6a0c8c1991bbb39&query=' + this.searchedMovie)
-        .then((result) => {
+        .get('https://api.themoviedb.org/3/search/tv', {
+          params: {
+            api_key: 'cdeff8ac68baa670d6a0c8c1991bbb39',
+            query: self.searched,
+            language: 'it-IT'
+          }
+        })
+        .then((response) => {
 
-          // copio ricerca in series
-          this.series = result.data.results;
-          console.log(this.series);
-          // stampa ricerca effettuata
-          console.log(this.searchedMovie);
-          // ripulisco la searchbar
-          this.searchedMovie = '';
+          const resultsSerie = response.data.results;
 
-          this.series.forEach(serie => {
+          self.results = self.results.concat(resultsSerie);
 
-            // trasformo i voti in interi da 1 a 5
-            serie.vote_average = parseInt((serie.vote_average / 2).toFixed());
-
-            // assegno una bandiera alla lingua
-            if (serie.original_language == 'en') {
-              serie.original_language = 'gb';
-            } else if (serie.original_language == 'ja') {
-              serie.original_language = 'jp';
+          // assegno una bandiera alla lingua
+          self.results.forEach(result => {
+            if (result.original_language == 'en') {
+              result.original_language = 'gb';
+            } else if (result.original_language == 'ja') {
+              result.original_language = 'jp';
             }
           });
-        }); // chiusura chiamata serie tv
+
+          // ripulisco la searchbar
+          this.searched = '';
+
+        }); // chiusura chiamata serie
 
     }, // chiusura search
+
+    getVote(vote) {
+      return parseInt(vote / 2);
+    }
 
   } // chiusura methods
   

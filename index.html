@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
    <meta charset="UTF-8">
@@ -24,43 +24,31 @@
    <div id="root">
 
       <div class="search_area">
-         <input type="text" @keyup.enter="search" v-model="searchedMovie">
-         <button v-model="searchedMovie" @click="search">Cerca</button>
-      </div>
+         <input type="text" @keyup.enter="search" v-model="searched">
+         <button v-model="searched" @click="search">Cerca</button>
+      </div> <!-- chiusura search area -->
 
-      <div v-for="movie in movies" class="card">
-         <h3>Film</h3> <!-- mi serve solo come riferimento -->
-         <!-- titolo -->
-         <h4>{{movie.title}}</h4>
-         <!-- titolo originale -->
-         <h5>{{movie.original_title}}</h5>
-         <!-- lingua -->
-         <p>{{movie.original_language}}</p> <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento -->
-         <img :src=" `https://www.countryflags.io/` + movie.original_language + `/shiny/64.png`" :alt="movie.original_language">
-         <!-- voto -->
-         <p>{{movie.vote_average}}</p> <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento numerico -->
-         <i class="fas fa-star" v-for="star in movie.vote_average"></i>
-         <!-- font awesome di riferimento -->
-         <!-- <i class="fas fa-star"></i> -->
-         <!-- <i class="far fa-star"></i> -->
-      </div>
+      <div v-for="result in results" class="card">
+         <!-- titolo film -->
+         <h3 v-if="result.title">{{result.title}}</h3>
+         <!-- titolo serie -->
+         <h3 v-if="result.name">{{result.name}}</h3>
+         <!-- titolo originale film -->
+         <span v-if="result.original_title">{{result.original_title}}</span>
+         <!-- titolo originale serie -->
+         <span v-if="result.original_name">{{result.original_name}}</span>
 
-      <div v-for="serie in series" class="card">
-         <h3>Serie tv</h3> <!-- mi serve solo come riferimento -->
-         <!-- titolo -->
-         <h4>{{serie.name}}</h4>
-         <!-- titolo originale -->
-         <h5>{{serie.original_name}}</h5>
-         <!-- lingua -->
-         <p>{{serie.original_language}}</p> <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento -->
-         <img :src=" `https://www.countryflags.io/` + serie.original_language + `/shiny/64.png`"
-            :alt="serie.original_language">
-         <!-- voto -->
-         <p>{{serie.vote_average}}</p> <!-- da cancellare in seguito, lo tengo momentaneamente per avere un riferimento numerico -->
-         <i class="fas fa-star" v-for="star in serie.vote_average"></i>
-         <!-- font awesome di riferimento -->
-         <!-- <i class="fas fa-star"></i> -->
-         <!-- <i class="far fa-star"></i> -->
+         <div class="rate">
+            <!-- stelle piene corrispondenti al voto -->
+            <i v-for="i in getVote(result.vote_average)" class="fas fa-star"></i><!-- questo commento serve solo ad avvicinare le stelline
+         --><i v-for="i in (5 - getVote(result.vote_average))" class="far fa-star"></i>
+         </div> <!-- chiusura rate -->
+
+         <div class="language">
+            <p>{{result.original_language}}</p>
+            <img :src=" 'https://www.countryflags.io/' + result.original_language + '/shiny/64.png'" :alt="result.original_language">
+         </div> <!-- chiusura language -->
+
       </div>
 
    </div> <!-- root -->
