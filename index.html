@@ -29,14 +29,20 @@
       </div> <!-- chiusura search area -->
 
       <div v-for="result in results" class="card">
+
+         <div class="poster">
+            <img v-if="result.poster_path != null" :src="'https://image.tmdb.org/t/p/w342/' + result.poster_path">
+            <img v-if="result.poster_path == null" src="img/not_found.jpg" class="not_found">
+         </div>
+
          <!-- titolo film -->
          <h3 v-if="result.title">{{result.title}}</h3>
          <!-- titolo serie -->
          <h3 v-if="result.name">{{result.name}}</h3>
          <!-- titolo originale film -->
-         <span v-if="result.original_title">{{result.original_title}}</span>
+         <span v-if="result.original_title != result.title">{{result.original_title}}</span>
          <!-- titolo originale serie -->
-         <span v-if="result.original_name">{{result.original_name}}</span>
+         <span v-if="result.original_name != result.name">{{result.original_name}}</span>
 
          <div class="rate">
             <!-- stelle piene corrispondenti al voto -->
@@ -49,7 +55,7 @@
             <img :src=" 'https://www.countryflags.io/' + result.original_language + '/shiny/64.png'" :alt="result.original_language">
          </div> <!-- chiusura language -->
 
-      </div>
+      </div> <!-- chiusura card -->
 
    </div> <!-- root -->
 

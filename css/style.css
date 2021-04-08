@@ -13,3 +13,11 @@
     padding: 10px;
     border: 1px solid black;
 }
+
+.poster > .not_found {
+    width: 342px;
+}
+
+.language > img {
+    width: 30px;
+}
