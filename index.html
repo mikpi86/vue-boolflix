@@ -41,6 +41,21 @@
 
          <main>
 
+            <div class="trailer">
+
+               <div class="video-container">
+                  <video src="video/compressed_DanangDrone.mp4" autoplay loop muted></video>
+                  <div class="video-overlay"></div>
+                  <i class="far fa-play-circle"></i>
+               </div>
+
+               <div class="trailer-info">
+                  <h2>Ballando con gli uccelli</h2>
+                  <p class="trama">Dalle magnifiche penne arruffate agli impeccabili corteggiamenti danzanti, gli uccelli del paradiso sfoggiano le loro mosse migliori per poter trovare una compagna.</p>
+                  <p class="regista">Regista: Huw Cordey</p>
+               </div>
+            </div> <!-- chiusura trailer -->
+
             <div v-for="result in results" class="card">
       
                <div class="poster">
@@ -100,6 +115,10 @@
                         {{result.overview}}
                      </span>
                   </div> <!-- chiusura overview -->
+
+                  <div class="btn-guarda">
+                     Guarda
+                  </div>
 
                </div> <!-- chiusura info card -->
       

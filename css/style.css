@@ -27,6 +27,7 @@ header > .search_area {
 }
 header>.search_area > button {
     padding: 2px;
+    cursor: pointer;
 }
 /* END header */
 
@@ -36,10 +37,77 @@ main {
     flex-wrap: wrap;
 }
 
+.trailer {
+    margin-left: 5px;
+    display: flex;
+}
+
+.video-container {
+    width: 60%;
+    height: auto;
+    position: relative;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+}
+
+.video-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(40, 35, 65, 0.3);  
+    z-index: 999;
+    display: none;
+}
+
+i.far.fa-play-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: rgb(216, 216, 216);
+    z-index: 9999;
+    display: none;
+    cursor: pointer;
+}
+
+.video-container:hover .video-overlay,
+.video-container:hover i.far.fa-play-circle {
+    display: block;
+}
+
+.trailer > .trailer-info {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 40%;
+}
+
+.trailer > .trailer-info > .trama,
+.trailer > .trailer-info > .regista {
+    margin-top: 10px;
+}
+
+.trailer > .trailer-info > .trama {
+    color: rgb(190, 190, 190);
+}
+
+.trailer > .trailer-info > .regista {
+    color: rgb(116, 116, 116);
+}
+
+h2 {
+    color: rgb(211, 38, 38);
+}
+
 .card {
     width: 342px;
     height: 513px;
-    margin: 5px;
+    margin: 20px 5px 5px;
     position: relative;
     /* il flex sottostante e la max-height della poster_img in basso sono stati aggiunti per dare un aspetto migliore alle locandine troppo alte come il primo risultato alla ricerca di Top Gun */
     display: flex;
@@ -51,8 +119,8 @@ main {
 }
 
 .info_card {
-    width: 100%;
-    height: 100%;
+    width: 342px;
+    height: 513px;
     position: absolute;
     top: 0;
     left: 0;
@@ -88,5 +156,15 @@ main {
 .language > img {
     width: 30px;
     margin-left: 5px;
+}
+
+.btn-guarda {
+    margin: 20px 10px;
+    padding: 5px 10px;
+    background-color: rgb(211, 38, 38);
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
 }
 /* END main */
